@@ -9,8 +9,8 @@ const GameGrid = ({ gridItems }) => {
   // 2 click ? unmatch?
   return (
     <Grid>
-      {gridItems.map(({ logo, id }) => {
-        return <Card key={id} id={id} src={logo} />;
+      {gridItems.map((gridItem) => {
+        return <Card key={gridItem.id} {...gridItem} />;
       })}
     </Grid>
   );
