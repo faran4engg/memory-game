@@ -1,18 +1,20 @@
-import React, { useState } from "react";
 import CardImage from "../CardImage/CardImage";
 import InitialImage from "../InitialImage/InitialImage";
 
-const Card = (cardData) => {
-  const [isClicked, setIsClicked] = useState(false);
-  const handleClick = () => {
-    setIsClicked((prev) => !prev);
+const Card = ({ onCardClick, showLogo, ...cardData }) => {
+  const handleClick = (cardData) => {
+    onCardClick(cardData);
   };
+  const { id, logo, hasMatched } = cardData;
+  // console.log({ hasMatched });
+
   return (
-    <div onClick={handleClick}>
-      {!isClicked ? (
-        <InitialImage />
+    <div onClick={() => handleClick(cardData)}>
+      <p>{cardData.matchingId}</p>
+      {showLogo || hasMatched ? (
+        <CardImage id={id} imageSrc={logo} />
       ) : (
-        <CardImage id={cardData.id} imageSrc={cardData.logo} />
+        <InitialImage />
       )}
     </div>
   );
